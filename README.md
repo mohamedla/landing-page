@@ -10,3 +10,4 @@
 - **Hide** the navigation bar while the user is **not scrolling**
 - Make section **collapside**
 - **Scroll To Top** Button that is visible only when scrolling down
+- When **scroll back to the top of the page** the nav bar will be visible
