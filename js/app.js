@@ -91,10 +91,39 @@ window.addEventListener('load',()=>{
         }
     }
     // Set the closest to top sections as active on scrolling
+    let notScrolling;
+    let lastScroll = 0;
     window.addEventListener('scroll',()=>{
         makeActive(topClosest(sections),sections,navItems);
+        /*
+            Suggested
+            hide fixed nav bar while not scrolling
+            adding event on scroll mean that the user is scrolling and using 
+            the setTimeout is for checking if the user stop scrolling the main idea is that 
+                - when user is scrolling the Event is keep happend
+                - every time the event happed it clear the timeout fnction so the time need to fire the timeout will not pass.
+                - and when the scrolling stop the time out will not be cleared  so the time will pass and the function will be fire
+            the nav bar will be visible on load
+        */
+        navMenu.classList.remove('hidden');
+        if (notScrolling !== undefined) {
+            clearTimeout(notScrolling);
+        }
+        notScrolling = setTimeout(() => {
+            navMenu.classList.add('hidden');
+        }, 100);
+        /*
+            here detect the scroll to to or down using window.pageYOffset'build in function' and lastScroll that store last scroll'window.pageYOffset'
+            window.pageYOffset return the distance from the top of the page
+            and by comparing lastScroll and current window.pageYOffset if lastScroll is greater then the user went up as the distance to the top become smaler and if lastScroll is leas then it went down as the distance top increase
+        */
+        if (window.pageYOffset > lastScroll) {
+            toTopBtn.classList.remove('hidden');
+        } else {
+            toTopBtn.classList.add('hidden');
+        }
+        lastScroll = window.pageYOffset;
     });
-
     // suggested
         //  make section collapside on click
     const sectColls = document.querySelectorAll('section .collapside');
@@ -105,43 +134,13 @@ window.addEventListener('load',()=>{
             sectionContent.classList.toggle('hidden');
         });
     }
-    /*
-        hide fixed nav bar while not scrolling
-        adding event on scroll mean that the user is scrolling and using 
-        the setTimeout is for checking if the user stop scrolling the main idea is that 
-            - when user is scrolling the Event is keep happend
-            - every time the event happed it clear the timeout fnction so the time need to fire the timeout will not pass.
-            - and when the scrolling stop the time out will not be cleared  so the time will pass and the function will be fire
-        the nav bar will be visible on load
-    */
-    let notScrolling;
-    window.addEventListener('scroll',()=>{
-        navMenu.classList.remove('hidden');
-        if (notScrolling !== undefined) {
-            clearTimeout(notScrolling);
-        }
-        notScrolling = setTimeout(() => {
-            navMenu.classList.add('hidden');
-        }, 100);
-    });
+    
     // to top button
         // add event to toTopBtn to scroll smothly to the top of the page on click
     const toTopBtn = document.querySelector('button#scroll_top');
     toTopBtn.addEventListener('click',()=>{
         window.scroll({top:0,behavior: "smooth"});
     });
-    /*
-        here detect the scroll to to or down using window.pageYOffset'build in function' and lastScroll that store last scroll'window.pageYOffset'
-        window.pageYOffset return the distance from the top of the page
-        and by comparing lastScroll and current window.pageYOffset if lastScroll is greater then the user went up as the distance to the top become smaler and if lastScroll is leas then it went down as the distance top increase
-    */
-    let lastScroll = 0;
-    window.addEventListener('scroll',()=>{
-        if (window.pageYOffset > lastScroll) {
-            toTopBtn.classList.remove('hidden');
-        } else {
-            toTopBtn.classList.add('hidden');
-        }
-        lastScroll = window.pageYOffset;
-    });
+    
+    
 });
