@@ -57,7 +57,7 @@ main {
 
 section {
     position: relative;
-    min-height: 80vh;
+    min-height: auto;
 }
 
 
@@ -240,6 +240,42 @@ section.active {
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
 }
+/* collapside Styles */
+    section .collapside svg{
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+    }
+    section .collapside{
+        margin: 5vw;
+        display: flex;
+        align-items: center;
+    }
+    section:nth-of-type(even) .collapside{
+        justify-content: end;
+        flex-flow: row-reverse;
+    }
+    .hidden{
+        display: none;
+    }
+/* end of collabside styles */
+/* scroll to top styles */
+button#scroll_top svg{
+    width: 50px;
+    height: 50px;
+}
+button#scroll_top{
+    position: fixed;
+    bottom: 5vh;
+    right: 5vw;
+    padding: 5px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 50px;
+    z-index: 5;
+    border: none;
+}
+/* end scroll to top styles */
 
 section.active .landing__container::before {
     opacity: 1;
