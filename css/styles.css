@@ -57,9 +57,25 @@ main {
 
 section {
     position: relative;
-    min-height: 80vh;
+    min-height: auto;
 }
-
+section .content img{
+    width: 250px;
+}
+section .content{
+    /* box-shadow: 5px 10px #888888; */
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: auto auto;
+    align-items: center;
+    grid-auto-flow: dense;
+}
+.content .img_container{
+    box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 10px;
+    box-shadow: 5px 10px rgb(255 255 255 / 30%);
+}
 
 /* ---- Module Rules ---- */
 
@@ -135,6 +151,8 @@ section {
     background: #000;
     padding: 3em;
     color: #fff;
+    display: flex;
+    justify-content: space-around;
 }
 
 .page__footer p{
@@ -169,9 +187,9 @@ section {
 section:nth-of-type(even) .landing__container {
     margin-right: 0;
     margin-left: auto;
-    text-align: right; 
+    text-align: right;
+    grid-column: 2;
 }
-
 /* Background Circles */
 /* Note that background circles are created with psuedo elements before and after */
 /* Circles appear to be random do to use of :nth-of-type psuedo class */
@@ -240,6 +258,42 @@ section.active {
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
 }
+/* collapside Styles */
+    section .collapside svg{
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+    }
+    section .collapside{
+        margin: 5vw;
+        display: flex;
+        align-items: center;
+    }
+    section:nth-of-type(even) .collapside{
+        justify-content: end;
+        flex-flow: row-reverse;
+    }
+    .hidden{
+        display: none!important;
+    }
+/* end of collabside styles */
+/* scroll to top styles */
+button#scroll_top svg{
+    width: 50px;
+    height: 50px;
+}
+button#scroll_top{
+    position: fixed;
+    bottom: 5vh;
+    right: 5vw;
+    padding: 5px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 50px;
+    z-index: 5;
+    border: none;
+}
+/* end scroll to top styles */
 
 section.active .landing__container::before {
     opacity: 1;
