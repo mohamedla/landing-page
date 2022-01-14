@@ -110,7 +110,12 @@ window.addEventListener('load',()=>{
             clearTimeout(notScrolling);
         }
         notScrolling = setTimeout(() => {
-            navMenu.classList.add('hidden');
+            // if the user scroll back to top the nav bar will be visible
+            if (document.scrollingElement.scrollTop === 0) {
+                navMenu.classList.remove('hidden');
+            }else{
+                navMenu.classList.add('hidden');
+            }
         }, 100);
         /*
             here detect the scroll to to or down using window.pageYOffset'build in function' and lastScroll that store last scroll'window.pageYOffset'
@@ -130,17 +135,14 @@ window.addEventListener('load',()=>{
     for (const collap of sectColls) {
         collap.addEventListener('click',()=>{
             const sectionContent = collap.parentElement.querySelector('.landing__container');
-            collap.innerHTML = (sectionContent.classList.contains('hidden'))?`<svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path></svg>`:`<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg> <h3>${sectionContent.querySelector('h2').innerText}</h3>`;
-            sectionContent.classList.toggle('hidden');
+            collap.innerHTML = (sectionContent.parentElement.classList.contains('hidden'))?`<svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path></svg>`:`<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg> <h3>${sectionContent.parentElement.parentElement.getAttribute('data-nav')}</h3>`;
+            sectionContent.parentElement.classList.toggle('hidden');
         });
     }
-    
     // to top button
         // add event to toTopBtn to scroll smothly to the top of the page on click
     const toTopBtn = document.querySelector('button#scroll_top');
     toTopBtn.addEventListener('click',()=>{
         window.scroll({top:0,behavior: "smooth"});
     });
-    
-    
 });
