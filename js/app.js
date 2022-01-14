@@ -1,57 +1,3 @@
-/**
- * 
- * Manipulating the DOM exercise. ✓
- * Exercise programmatically builds navigation, ✓
- * scrolls to anchors from navigation, ✓
- * and highlights section in viewport upon scrolling. ✓
- * 
- * Dependencies: None ✓
- * 
- * JS Version: ES2015/ES6 ✓
- * 
- * JS Standard: ESlint ✓
- * 
-*/
-
-/**
- * Comments should be present at the beginning of each procedure and class. ✓
- * Great to have comments before crucial code sections within the procedure. ✓
-*/
-
-/**
- * Define Global Variables ✓
- * 
-*/
-
-
-/**
- * End Global Variables ✓
- * Start Helper Functions ✓
- * 
-*/
-
-
-
-/**
- * End Helper Functions ✓
- * Begin Main Functions ✓
- * 
-*/
-
-// build the nav  ✓
-
-
-// Add class 'active' to section when near top of viewport  ✓
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
 /* build link menu by taking 
     navigation->the section that will hold menu containercontainer
     sectionList->the list of sections that need to pe linked in menu
@@ -116,7 +62,7 @@ function topClosest(sectionList) {
         // the 2 values are positive && the section closer to top that the one register in theClosest
             theClosest = section;
             topDistance = section.getBoundingClientRect().top;
-        }else if(topDistance < 0 && (-(topDistance) >= ((section.getBoundingClientRect().height)*2.5/3))){
+        }else if(topDistance < 0 && (-(topDistance) >= ((theClosest.getBoundingClientRect().height)*2.5/3))){
             // the value in the topDistance is nigative && the topDistance greater than the hieght mean that the section is out in viewport 
             // (note 2.5/3 of the height represent the content height as height represent the (content height + boder + padding))
             theClosest = section;
