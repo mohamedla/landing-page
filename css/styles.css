@@ -65,15 +65,26 @@ section {
 
 /* Navigation Styles*/
 .navbar__menu{
-    display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+}
+
+.menu_icon{
+    width: 25px;
+    height: 25px;
+    color: #000;
+    display: block;
+    cursor: pointer;
+    margin: 5px 10px;
 }
 
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
-    text-align: right;
+    text-align: center;
     color: #000;
+    display: none;
 }
 
 
@@ -81,6 +92,19 @@ section {
     display: inline-block;
     padding: 5px;
     cursor: pointer;
+}
+
+.navbar__menu li:hover{
+    background-color: yellow;
+}
+
+.navbar__menu li.active{
+    background-color: darkblue;
+    color: white;
+}
+
+.navbar__menu li.active:hover{
+    background-color: darkblue;
 }
 
 .navbar__menu .menu__link {
@@ -125,10 +149,20 @@ section {
     text-align: left;
 }
 
-@media only screen and (min-width: 35em){
+@media only screen and (min-width: 480px){
     .landing__container {
         max-width: 50em;
         padding: 4em;
+    }
+    .navbar__menu ul{
+        display: block;
+    }
+    .menu_icon{
+        display: none;
+    }
+    .navbar__menu{
+        justify-content: center;
+        display: flex;
     }
 }
 
@@ -202,17 +236,17 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* ---- Theme State Rules ---- */
 /* Section Active Styles */
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
-section.your-active-class {
+section.active {
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-section.your-active-class .landing__container::before {
+section.active .landing__container::before {
     opacity: 1;
     animation: rotate 4s linear 0s infinite forwards;
 }
 
-section.your-active-class .landing__container::after {
+section.active .landing__container::after {
     opacity: 1;
     animation: rotate 5s linear 0s infinite forwards reverse;
 }
